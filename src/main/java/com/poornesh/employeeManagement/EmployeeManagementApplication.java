@@ -18,7 +18,7 @@ public class EmployeeManagementApplication {
 //		dp.setName("testing");
 		DepartmentService ds = ctx.getBean(DepartmentService.class);
 		//ds.addDepartment(dp);
-		ds.showTables();
+
 //		ds.findAll();
 	}
 

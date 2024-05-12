@@ -42,4 +42,31 @@ public class DepartmentRepo {
         List<String> tableNames = jdbc.queryForList(query, String.class);
         System.out.println(tableNames);
     }
+
+    public int update(Department d) {
+        String query = "update department set name = (?) where depId = (?)";
+        int rows = jdbc.update(query,d.getName(),d.getDepId());
+        return rows;
+    }
+
+    public int delete(int id) {
+        String query = "delete from department where depId = (?)";
+        return jdbc.update(query,id);
+    }
+
+
+    public Department find(int id) {
+        try {
+            String query = "select * from department where depId = (?)";
+            return jdbc.queryForObject(query, new Object[]{id}, (rs, rowNum) -> {
+                Department d = new Department();
+                d.setDepId(rs.getInt("depId"));
+                d.setName(rs.getString("name"));
+                return d;
+            });
+        }catch (Exception e){
+            return null;
+        }
+
+    }
 }

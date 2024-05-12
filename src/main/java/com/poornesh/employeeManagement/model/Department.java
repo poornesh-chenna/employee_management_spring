@@ -7,6 +7,7 @@ public class Department {
     private int depId;
     private String name;
 
+
     public int getDepId() {
         return depId;
     }

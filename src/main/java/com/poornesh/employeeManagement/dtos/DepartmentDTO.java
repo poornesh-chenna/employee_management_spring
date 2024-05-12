@@ -10,10 +10,10 @@ import lombok.Data;
 public class DepartmentDTO {
 
     @NotBlank(message = "Department id is required")
-    private int depId;
+    public int depId;
 
     @NotNull(message = "Department name is required")
-    private String name;
+    public String name;
 
     @AssertTrue
     boolean isNameNotBlank() {
@@ -22,6 +22,7 @@ public class DepartmentDTO {
     }
 
     public Department toDepartment(){
+        System.out.println(depId+" "+name);
         return new Department()
                 .setDepId(depId)
                 .setName(name);
