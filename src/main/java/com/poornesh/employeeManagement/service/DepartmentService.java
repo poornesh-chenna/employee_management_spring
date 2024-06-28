@@ -15,7 +15,7 @@ public class DepartmentService {
 
 
     public Department add(Department d) {
-        System.out.println("add called "+d.getName());
+        System.out.println("add call" +"ed "+d.getName());
         dr.save(d);
         return d;
     }

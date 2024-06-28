@@ -79,4 +79,15 @@ public class ProjectRepo {
         }
 
     }
+
+    public List<Project> findProjectsUnderDep(int depId) {
+        String query = "select * from project where departmentId = "+depId;
+        return jdbc.query(query, (rs, rowNum) -> {
+            Project p = new Project();
+            p.setProjectId(rs.getInt("projectId"));
+            p.setName(rs.getString("name"));
+            p.setDepartmentId((rs.getInt("departmentId")));
+            return p;
+        });
+    }
 }

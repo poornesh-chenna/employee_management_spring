@@ -25,7 +25,7 @@ public class ProjectController {
         return new ResponseEntity<>(createdProject, HttpStatus.CREATED);
     }
 
-    @PutMapping("/")
+    @PutMapping("/update")
     public ResponseEntity<String> update(@RequestBody Project p){
         Either<ErrorResponse, Integer> updateEither = ps.update(p);
         if (updateEither.isLeft()) {
@@ -58,7 +58,11 @@ public class ProjectController {
         if(p == null)
             return new ResponseEntity<>("Project with ID " + id + " does not exist.",HttpStatus.BAD_REQUEST);
         else
-            return new ResponseEntity<>(p,HttpStatus.ACCEPTED);
-
+            return new ResponseEntity<>(p, HttpStatus.ACCEPTED);
+    }
+    
+    @GetMapping("/dep/{depId}")
+    public List<Project> getProjectsUnderDep(@PathVariable int depId){
+        return ps.findProjectsUnderDep(depId);
     }
 }

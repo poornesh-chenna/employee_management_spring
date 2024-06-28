@@ -41,4 +41,8 @@ public class ProjectService {
     public Project find(int id) {
         return pr.find(id);
     }
+
+    public List<Project> findProjectsUnderDep(int depId) {
+        return pr.findProjectsUnderDep(depId);
+    }
 }

@@ -16,29 +16,23 @@ import java.util.List;
 @RequestMapping(value = "/department")
 public class DepartmentController {
 
-    DepartmentService ds;
-
-
-    public DepartmentService getDs() {
-        return ds;
-    }
-
     @Autowired
-    public void setDs(DepartmentService ds) {
-        this.ds = ds;
-    }
+    DepartmentService ds;
 
 
     @PostMapping("/add")
     public ResponseEntity<Department> add(@Valid @RequestBody DepartmentDTO departmentDTO)
     {
-        System.out.println(departmentDTO);
+//        ResponseEntity is a flexible class in Spring Boot used to handle HTTP responses. It represents the whole HTTP response, including the status code, headers, and body.
+
+
+            System.out.println(departmentDTO);
         Department createdDepartment =  ds.add(departmentDTO.toDepartment());
 
         return new ResponseEntity<>(createdDepartment, HttpStatus.CREATED);
     }
 
-    @PutMapping("/")
+    @PutMapping("/update")
     public ResponseEntity<String> update(@RequestBody Department d)
     {
         System.out.println(d);
