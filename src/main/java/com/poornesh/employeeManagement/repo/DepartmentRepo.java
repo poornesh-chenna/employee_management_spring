@@ -1,6 +1,7 @@
 package com.poornesh.employeeManagement.repo;
 
 import com.poornesh.employeeManagement.model.Department;
+import com.poornesh.employeeManagement.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -69,4 +70,15 @@ public class DepartmentRepo {
         }
 
     }
+    public List<Project> findProjects(int id) {
+        String sql = "select projectId, name from project where departmentId = "+id;
+        return jdbc.query(sql, (rs, rowNum) -> {
+            Project p = new Project();
+            p.setProjectId(rs.getInt("projectId"));
+            p.setName(rs.getString("name"));
+            return p;
+        });
+
+    }
+
 }

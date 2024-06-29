@@ -68,4 +68,14 @@ public class DepartmentController {
             return new ResponseEntity<>(d,HttpStatus.ACCEPTED);
 
     }
+
+    @GetMapping("/projectsUnder/{id}")
+    public ResponseEntity<?> findProjectsUnderDep(@PathVariable int id){
+        Department d = ds.find(id);
+        if(d == null)
+            return new ResponseEntity<>("Department with ID " + id + " does not exist.",HttpStatus.BAD_REQUEST);
+        else
+            return new ResponseEntity<>(ds.findProjectsUnderDep(id),HttpStatus.ACCEPTED);
+
+    }
 }

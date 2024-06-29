@@ -1,6 +1,7 @@
 package com.poornesh.employeeManagement.service;
 
 import com.poornesh.employeeManagement.model.Department;
+import com.poornesh.employeeManagement.model.Project;
 import com.poornesh.employeeManagement.repo.DepartmentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +42,9 @@ public class DepartmentService {
 
     public Department find(int id) {
         return dr.find(id);
+    }
+
+    public List<Project> findProjectsUnderDep(int id){
+       return dr.findProjects(id);
     }
 }
